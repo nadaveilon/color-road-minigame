@@ -4,32 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody playerRigidbody;
-    
     [Range(1, 100)]
-    [SerializeField] private float forwardSpeed = 10;
-
-    [Range(1, 100)]
-    [SerializeField] private float sidewaysSpeed = 60;
+    [SerializeField] private float sidewaysSpeed = 60f;
 
     [Range(0.1f, 100)]
-    [SerializeField] private float sidewaysRangeAbsolute = 2;
+    [SerializeField] private float sidewaysRangeAbsolute = 2f;
     
-
     private float mouseXPosition;
 
     private void Reset()
     {
-        forwardSpeed = 10;
-        sidewaysSpeed = 60;
-        sidewaysRangeAbsolute = 2;
-        playerRigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
-        // Add constant forward velocity
-        playerRigidbody.AddForce(Vector3.forward * forwardSpeed, ForceMode.VelocityChange);
+        sidewaysSpeed = 60f;
+        sidewaysRangeAbsolute = 2f;
     }
 
     private void Update()
