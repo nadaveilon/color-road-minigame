@@ -37,7 +37,7 @@ public class CollectableRow : MonoBehaviour
     {
         for (int i = 0; i < collectables.Count; i++)
         {
-            collectables[i].Item2.ColorIndex = order[i];
+            collectables[i].Item2.colorIndex = order[i];
         }
     }
 

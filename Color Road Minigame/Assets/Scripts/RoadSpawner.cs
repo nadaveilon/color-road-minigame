@@ -48,10 +48,11 @@ public class RoadSpawner : MonoBehaviour
 
         while (rowsLeft > 0)
         {
+            relativeZ += rowWidth;
+
             // Should skip row
             if (Random.value < 0.3)
             {
-                relativeZ += rowWidth;
                 rowsLeft--;
                 continue;
             }
@@ -71,8 +72,7 @@ public class RoadSpawner : MonoBehaviour
                 row.GetComponent<CollectableRow>().AssignColors(colorOrder);
                 relativeZ += rowWidth;
             }
-
-            relativeZ += rowWidth;
+            
             rowsLeft -= filledRows + 1;
         }
 

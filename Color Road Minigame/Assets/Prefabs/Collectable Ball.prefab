@@ -110,3 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 7918273836025345532}
   objectCollider: {fileID: 7918273836025345535}
+  colorIndex: 0

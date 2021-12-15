@@ -8,25 +8,7 @@ public class Collectable : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Collider objectCollider;
     
-    private int colorIndex;
-    public int ColorIndex
-    {
-        get { return colorIndex; }
-        set
-        {
-            colorIndex = value;
-
-            if (meshRenderer != null)
-            {
-                meshRenderer.material.color = GameManager.Instance.availableColors[value];
-            }
-
-            if (objectCollider != null)
-            {
-                objectCollider.isTrigger = colorIndex == GameManager.Instance.ActiveColorIndex;
-            }
-        }
-    }
+    public int colorIndex;
 
     private void Reset()
     {
@@ -36,7 +18,22 @@ public class Collectable : MonoBehaviour
 
     private void Start()
     {
-        ColorIndex = ColorIndex;
+        if (meshRenderer != null)
+        {
+            meshRenderer.material.color = GameManager.Instance.availableColors[colorIndex];
+        }
+
+        if (objectCollider != null)
+        {
+            objectCollider.isTrigger = colorIndex == GameManager.Instance.ActiveColorIndex;
+        }
+
+        GameManager.Instance.OnActiveColorChanged.AddListener(ActiveColorChanged);
+    }
+
+    public void ActiveColorChanged(int index, Color color)
+    {
+        objectCollider.isTrigger = colorIndex == index;
     }
 
     private void OnTriggerEnter(Collider other)
