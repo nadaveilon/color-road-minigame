@@ -5,20 +5,15 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer renderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     private void Reset()
     {
-        renderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void Awake()
+    public void OnColorChanged(int index, Color color)
     {
-        GameManager.Instance.OnActiveColorChanged.AddListener(OnColorChanged);
-    }
-
-    private void OnColorChanged(int index, Color color)
-    {
-        renderer.material.color = color;
+        meshRenderer.material.color = color;
     }
 }

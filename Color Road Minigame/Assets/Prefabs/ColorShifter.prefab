@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2902722496780877935}
   m_Layer: 0
   m_Name: ColorShifter
-  m_TagString: ColorShifter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
