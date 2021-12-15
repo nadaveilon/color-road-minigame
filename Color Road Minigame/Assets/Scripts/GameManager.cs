@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
             OnScoreChanged?.Invoke(value.ToString());
         }
     }
+
     private void Reset()
     {
         // Reset all properties to their default values
@@ -61,9 +62,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Make sure only a single instance of the game manager exists
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
