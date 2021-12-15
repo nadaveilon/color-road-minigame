@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Range(1, 100)]
-    [SerializeField] private float sidewaysSpeed = 60f;
+    [SerializeField] private float sidewaysSpeed = 50f;
 
-    [Range(0.1f, 100)]
+    [Range(0.1f, 5)]
     [SerializeField] private float sidewaysRangeAbsolute = 2f;
     
     private float mouseXPosition;
 
     private void Reset()
     {
-        sidewaysSpeed = 60f;
+        sidewaysSpeed = 50f;
         sidewaysRangeAbsolute = 2f;
     }
 
