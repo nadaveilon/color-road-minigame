@@ -14,9 +14,6 @@ public class ColorShifter : MonoBehaviour
 
     private void Start()
     {
-        // randomize the target color
-        colorIndex = GetRandomColorIndex();
-
         if (meshRenderer != null)
         {
             meshRenderer.material.color = GameManager.Instance.availableColors[colorIndex];
@@ -31,16 +28,14 @@ public class ColorShifter : MonoBehaviour
         }
     }
 
-    private int GetRandomColorIndex()
+    public int SetRandomColorIndex(int excludedIndex)
     {
-        int index;
-
         do
         {
-            index = Random.Range(0, GameManager.Instance.availableColors.Count);
+            colorIndex = Random.Range(0, GameManager.Instance.availableColors.Count);
         }
-        while (index == GameManager.Instance.ActiveColorIndex);
+        while (colorIndex == excludedIndex);
 
-        return index;
+        return colorIndex;
     }
 }

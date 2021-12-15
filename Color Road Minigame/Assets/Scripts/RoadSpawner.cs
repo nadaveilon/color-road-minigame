@@ -20,6 +20,8 @@ public class RoadSpawner : MonoBehaviour
     private Pool<CollectableRow> rowsPool;
     private List<GameObject> roadSegments;
 
+    private int lastShifterColorIndex;
+
     private void Awake()
     {
         //rowsPool = new Pool<CollectableRow>(rowPrefab, contentRows * segmentsInMemory);
@@ -34,10 +36,12 @@ public class RoadSpawner : MonoBehaviour
 
     private void Start()
     {
+        lastShifterColorIndex = GameManager.Instance.ActiveColorIndex;
+
         for (int i = 0; i < roadSegments.Count; i++)
         {
             FillSegment(roadSegments[i]);
-            roadSegments[i].transform.SetPositionZ(i * 200);
+            roadSegments[i].transform.SetPositionZ(i * (openingGapRows + contentRows + closeingGapRows) * rowWidth);
         }
     }
 
@@ -79,5 +83,6 @@ public class RoadSpawner : MonoBehaviour
         relativeZ += closeingGapRows * rowWidth;
         var shifter = Instantiate(colorShifterPrefab, segment.transform);
         shifter.transform.SetPositionZ(relativeZ);
+        lastShifterColorIndex = shifter.GetComponent<ColorShifter>().SetRandomColorIndex(lastShifterColorIndex);
     }
 }

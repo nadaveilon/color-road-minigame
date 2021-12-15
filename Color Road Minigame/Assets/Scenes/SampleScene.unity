@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cead822a897f2f549932bf2a241398bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowWidth: 10
+  rowWidth: 13
   segmentsInMemory: 3
   openingGapRows: 4
   contentRows: 14
