@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float forwardSpeed = 10;
-    [SerializeField] private float sidewaysSpeed = 50;
     [SerializeField] private Rigidbody playerRigidbody;
+    
+    [Range(1, 100)]
+    [SerializeField] private float forwardSpeed = 10;
+
+    [Range(1, 100)]
+    [SerializeField] private float sidewaysSpeed = 60;
+
+    [Range(0.1f, 100)]
+    [SerializeField] private float sidewaysRangeAbsolute = 2;
+    
 
     private float mouseXPosition;
 
     private void Reset()
     {
         forwardSpeed = 10;
-        sidewaysSpeed = 50;
+        sidewaysSpeed = 60;
+        sidewaysRangeAbsolute = 2;
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -41,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
             // move the player according to delta
             var targetPosition = transform.position;
             targetPosition.x += dx * sidewaysSpeed * Time.deltaTime;
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -sidewaysRangeAbsolute, sidewaysRangeAbsolute);
             transform.position = targetPosition;
         }
     }
