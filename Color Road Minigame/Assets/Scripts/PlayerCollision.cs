@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,13 @@ public class PlayerCollision : MonoBehaviour
         renderer = GetComponent<MeshRenderer>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("ColorShifter"))
-        {
-            var shifter = collision.gameObject.GetComponent<ColorShifter>();
-            renderer.material.color = shifter.color;
-        }
+        GameManager.Instance.OnActiveColorChanged.AddListener(OnColorChanged);
+    }
+
+    private void OnColorChanged(int index, Color color)
+    {
+        renderer.material.color = color;
     }
 }

@@ -4,28 +4,43 @@ using UnityEngine;
 
 public class ColorShifter : MonoBehaviour
 {
-    [SerializeField] private List<Color> availableColors;
-
-    public Color color;
+    [SerializeField] private MeshRenderer meshRenderer;
+    private int colorIndex;
+    
+    private void Reset()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
 
     private void Start()
     {
-        if (availableColors != null)
+        // randomize the target color
+        colorIndex = GetRandomColorIndex();
+
+        if (meshRenderer != null)
         {
-            color = availableColors[Random.Range(0, availableColors.Count)];
-
-            var renderer = GetComponent<MeshRenderer>();
-
-            if (renderer != null)
-            {
-                renderer.material.color = color;
-            }
+            meshRenderer.material.color = GameManager.Instance.availableColors[colorIndex];
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.ActiveColorIndex = colorIndex;
+        }
+    }
+
+    private int GetRandomColorIndex()
+    {
+        int index;
+
+        do
+        {
+            index = Random.Range(0, GameManager.Instance.availableColors.Count);
+        }
+        while (index == GameManager.Instance.ActiveColorIndex);
+
+        return index;
     }
 }
