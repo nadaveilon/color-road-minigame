@@ -17,14 +17,12 @@ public class RoadSpawner : MonoBehaviour
     [SerializeField] private GameObject rowPrefab;
     [SerializeField] private GameObject colorShifterPrefab;
 
-    private Pool<CollectableRow> rowsPool;
     private List<GameObject> roadSegments;
 
     private int lastShifterColorIndex;
 
     private void Awake()
     {
-        //rowsPool = new Pool<CollectableRow>(rowPrefab, contentRows * segmentsInMemory);
         roadSegments = new List<GameObject>(segmentsInMemory);
         
         for(int i = 0; i < segmentsInMemory; i++)
