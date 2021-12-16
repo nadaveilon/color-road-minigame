@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public List<Color> availableColors;
     public float roadLimitAbsolute = 2f;
-    [SerializeField] private int scoreMultiplier = 1;
+    [SerializeField] private int collectableValue = 1;
 
     private static GameManager instance;
     public static GameManager Instance
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         // Reset all properties to their default values
         score = 0;
-        scoreMultiplier = 1;
+        collectableValue = 1;
         roadLimitAbsolute = 2f;
         availableColors = new List<Color>()
         {
@@ -74,8 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void ItemCollected()
     {
-        Score += 1 * scoreMultiplier;
-        Debug.Log(score);
+        Score += collectableValue;
     }
 
     public void EndGame()
