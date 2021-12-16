@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent<int, Color> OnActiveColorChanged;
     public UnityEvent<string> OnScoreChanged;
+    public UnityEvent OnGameOver;
 
     public List<Color> availableColors;
     public float roadLimitAbsolute = 2f;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        Time.timeScale = 0;
+        OnGameOver.Invoke();
         Debug.Log("Game Over");
     }
 }

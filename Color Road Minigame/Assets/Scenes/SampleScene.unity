@@ -417,12 +417,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
   availableColors:
   - {r: 0.2666667, g: 0.8666667, b: 0.3411765, a: 1}
   - {r: 0.9568627, g: 0.4666667, b: 0.4196078, a: 1}
   - {r: 1, g: 0.8235294, b: 0.1960784, a: 1}
   roadLimitAbsolute: 2
-  scoreMultiplier: 1
+  collectableValue: 1
 --- !u!4 &363216597
 Transform:
   m_ObjectHideFlags: 0
@@ -474,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9688a342cb4a3be4d9de777076ebbb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sidewaysSpeed: 35
+  sidewaysSpeed: 20
   sidewaysRangeAbsolute: 2
 --- !u!135 &468634339
 SphereCollider:
@@ -745,7 +748,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -914,7 +917,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
+      scalar: 0.3
       minScalar: 0.05
       maxCurve:
         serializedVersion: 2
@@ -1290,14 +1293,14 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 10
+    angle: 3
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -20, y: 180, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 1, y: 1, z: 0.5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5496,8 +5499,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.9019608, g: 0.9764706, b: 0.8901961, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5701,8 +5704,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523620558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 1, z: 500}
+  m_LocalPosition: {x: 0, y: 0, z: 490}
+  m_LocalScale: {x: 0.6, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
