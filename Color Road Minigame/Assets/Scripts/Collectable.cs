@@ -39,6 +39,7 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.Instance.ItemCollected();
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
