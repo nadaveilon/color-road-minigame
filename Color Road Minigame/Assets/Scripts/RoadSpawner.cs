@@ -25,6 +25,7 @@ public class RoadSpawner : MonoBehaviour
     [SerializeField] private GameObject roadSegmentPrefab;
     [SerializeField] private GameObject rowPrefab;
     [SerializeField] private GameObject colorShifterPrefab;
+    [SerializeField] private GameObject finishLinePrefab;
 
     // Private data members
     private List<GameObject> roadSegments;
@@ -67,6 +68,11 @@ public class RoadSpawner : MonoBehaviour
             FillSegment(roadSegments[i]);
             roadSegments[i].transform.SetPositionZ(i * rowsTotal * rowWidth);
         }
+
+        // Create finish line at the end of the road
+        var finishLine = Instantiate(finishLinePrefab, roadSegments[roadSegments.Count - 1].transform);
+        finishLine.transform.SetPositionZ(roadSegments.Count * rowsTotal * rowWidth + 10 * relativeUnitScale);
+        finishLine.GetComponent<Finishline>().SetColor(lastShifterColorIndex, GameManager.Instance.availableColors[lastShifterColorIndex]);
     }
 
     private void FillSegment(GameObject segment)

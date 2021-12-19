@@ -6694,6 +6694,7 @@ MonoBehaviour:
   roadSegmentPrefab: {fileID: 1041866150482330966, guid: 73406741378116f41b7d47f1005c8429, type: 3}
   rowPrefab: {fileID: 5383385615682440792, guid: 01b95de0d5aa0e748af9c9a55f817e52, type: 3}
   colorShifterPrefab: {fileID: 2902722496780877938, guid: b7e3c0f166392364c825d56fe042aa10, type: 3}
+  finishLinePrefab: {fileID: 3461928515754188534, guid: e757f1fb4dfdace4eb8bab316d414214, type: 3}
 --- !u!1 &1558132239
 GameObject:
   m_ObjectHideFlags: 0
