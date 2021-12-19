@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject startScreen;
+    [SerializeField] private GameObject endScreen;
+
     // Update is called once per frame
     void Update()
     {
@@ -13,8 +17,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnAnimationComplete()
+    public void OnStartAnimationComplete()
     {
-        Destroy(gameObject);
+        Destroy(startScreen);
     }
+
+
 }
