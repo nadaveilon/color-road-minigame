@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent<int, Color> OnActiveColorChanged;
     public UnityEvent<string> OnScoreChanged;
+    public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
 
     public List<Color> availableColors;
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            OnScoreChanged?.Invoke(value.ToString());
+            OnScoreChanged.Invoke(value.ToString());
         }
     }
 
@@ -78,10 +79,13 @@ public class GameManager : MonoBehaviour
         Score += collectableValue;
     }
 
+    public void StartGame()
+    {
+        OnGameStart.Invoke();
+    }
+
     public void EndGame()
     {
-        Time.timeScale = 0;
         OnGameOver.Invoke();
-        Debug.Log("Game Over");
     }
 }

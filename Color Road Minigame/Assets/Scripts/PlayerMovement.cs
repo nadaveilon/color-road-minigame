@@ -2,24 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(ConstantForce))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float forwardSpeed = 30f;
+
     [Range(1, 100)]
-    [SerializeField] private float sidewaysSpeed = 50f;
+    [SerializeField] private float sidewaysSpeed = 20f;
 
     [Range(0.1f, 5)]
     [SerializeField] private float sidewaysRangeAbsolute = 2f;
-    
+
+    [SerializeField] private ConstantForce force;
+
     private float mouseXPosition;
+    private bool isGameActive = false;
 
     private void Reset()
     {
-        sidewaysSpeed = 50f;
+        forwardSpeed = 30f;
+        sidewaysSpeed = 20f;
         sidewaysRangeAbsolute = 2f;
+        force = GetComponent<ConstantForce>();
     }
 
     private void Update()
     {
+        if (!isGameActive)
+        {
+            return;
+        }
+
         // Check if fire button was pressed
         if (Input.GetButtonDown("Fire1"))
         {
@@ -39,6 +52,21 @@ public class PlayerMovement : MonoBehaviour
             targetPosition.x = Mathf.Clamp(targetPosition.x, -sidewaysRangeAbsolute, sidewaysRangeAbsolute);
             transform.position = targetPosition;
         }
+    }
+
+    public void GameStarted()
+    {
+        // Set constent forward motion on player
+        isGameActive = true;
+        force.force = Vector3.forward * forwardSpeed;
+    }
+
+    public void GameEnded()
+    {
+        // Freeze player interaction and movement
+        isGameActive = false;
+        force.force = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     private float GetCurrentMouseX()
