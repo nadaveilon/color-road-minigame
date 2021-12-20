@@ -1,19 +1,32 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    #region Editor Fields
+
+    [Header("Global Variables")]
+    public List<Color> availableColors;
+    [SerializeField] private int collectableValue = 1;
+
+    [Space]
+    [Header("Events")]
     public UnityEvent<int, Color> OnActiveColorChanged;
     public UnityEvent<string> OnScoreChanged;
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
 
-    public List<Color> availableColors;
-    public float roadLimitAbsolute = 2f;
-    [SerializeField] private int collectableValue = 1;
+    #endregion
 
+    #region Constants
+    
+    public const float roadLimitAbsolute = 2f;
+
+    #endregion
+
+    #region Public Properties
+    
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -47,12 +60,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Unity Methods
+
     private void Reset()
     {
         // Reset all properties to their default values
         score = 0;
         collectableValue = 1;
-        roadLimitAbsolute = 2f;
         availableColors = new List<Color>()
         {
             new Color(0.2666667f, 0.8666667f, 0.3411765f), // Green #FF44DD57
@@ -74,6 +90,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Public Methods
+
     public void ItemCollected()
     {
         Score += collectableValue;
@@ -88,4 +108,6 @@ public class GameManager : MonoBehaviour
     {
         OnGameOver.Invoke();
     }
+
+    #endregion
 }

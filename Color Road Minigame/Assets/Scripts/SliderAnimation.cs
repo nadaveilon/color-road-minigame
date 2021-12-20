@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using System;
 
 [RequireComponent(typeof(Slider))]
 public class SliderAnimation : MonoBehaviour
@@ -16,10 +13,10 @@ public class SliderAnimation : MonoBehaviour
     }
 
     private Sequence animationSequence;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
+        // Create looping animation sequence for the slider value
         animationSequence = DOTween.Sequence();
         animationSequence.SetLoops(-1);
         animationSequence.PrependInterval(0.5f);

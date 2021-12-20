@@ -1,11 +1,12 @@
 using Assets.Scripts.Utilities;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class RoadSpawner : MonoBehaviour
 {
+    #region Editor Fields
+
     [Header("Global Properties")]
     [Range(3, 5)]
     [SerializeField] private int segmentsInMemory = 3;
@@ -27,14 +28,23 @@ public class RoadSpawner : MonoBehaviour
     [SerializeField] private GameObject colorShifterPrefab;
     [SerializeField] private GameObject finishLinePrefab;
 
+    #endregion
+
+    #region Data Members
+
     // Private data members
     private List<GameObject> roadSegments;
     private int lastShifterColorIndex;
     private int rowsTotal;
     private float relativeUnitScale;
 
+    #endregion
+
+    #region Unity Methods
+
     private void Reset()
     {
+        // Give default values to all fields
         segmentsInMemory = 3;
         rowWidth = 13;
         openingGapRows = 4;
@@ -45,6 +55,7 @@ public class RoadSpawner : MonoBehaviour
 
     private void Awake()
     {
+        // Initialize auxiliary data members
         rowsTotal = openingGapRows + contentRows + closeingGapRows;
         relativeUnitScale = rowWidth / 10f;
 
@@ -72,8 +83,12 @@ public class RoadSpawner : MonoBehaviour
         // Create finish line at the end of the road
         var finishLine = Instantiate(finishLinePrefab, roadSegments[roadSegments.Count - 1].transform);
         finishLine.transform.SetPositionZ(roadSegments.Count * rowsTotal * rowWidth + 10 * relativeUnitScale);
-        finishLine.GetComponent<Finishline>().SetColor(lastShifterColorIndex, GameManager.Instance.availableColors[lastShifterColorIndex]);
+        finishLine.GetComponent<Finishline>().SetColor(GameManager.Instance.availableColors[lastShifterColorIndex]);
     }
+
+    #endregion
+
+    #region Private Methods
 
     private void FillSegment(GameObject segment)
     {
@@ -124,4 +139,6 @@ public class RoadSpawner : MonoBehaviour
         shifter.transform.SetPositionZ(relativeZ);
         lastShifterColorIndex = shifter.GetComponent<ColorShifter>().SetRandomColorIndex(lastShifterColorIndex);
     }
+
+    #endregion
 }

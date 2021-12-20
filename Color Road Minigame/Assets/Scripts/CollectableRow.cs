@@ -1,24 +1,26 @@
-using System.Collections;
+using Assets.Scripts.Utilities;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System;
-using Random = UnityEngine.Random;
-using Assets.Scripts.Utilities;
 
 public class CollectableRow : MonoBehaviour
 {
-    [SerializeField] private GameObject collectable;
+    [SerializeField] private GameObject collectablePrefab;
 
     private List<Tuple<GameObject, Collectable>> collectables;
-    public List<int> colorOrder;
 
     private void Awake()
     {
-        var right = Instantiate(collectable, transform);
-        var center = Instantiate(collectable, transform);
-        var left = Instantiate(collectable, transform);
+        // Create the collectable items in the row
+        var right = Instantiate(collectablePrefab, transform);
+        var center = Instantiate(collectablePrefab, transform);
+        var left = Instantiate(collectablePrefab, transform);
 
+        // Set items X position
+        right.transform.SetPositionX(-GameManager.roadLimitAbsolute);
+        left.transform.SetPositionX(GameManager.roadLimitAbsolute);
+
+        // Get the Collectable script of each item
         collectables = new List<Tuple<GameObject, Collectable>>()
         {
             new Tuple<GameObject, Collectable>(right, right.GetComponent<Collectable>()),
@@ -27,24 +29,12 @@ public class CollectableRow : MonoBehaviour
         };
     }
 
-    private void Start()
-    {
-        collectables[0].Item1.transform.SetPositionX(-GameManager.Instance.roadLimitAbsolute);
-        collectables[2].Item1.transform.SetPositionX(GameManager.Instance.roadLimitAbsolute);
-    }
-
     public void AssignColors(List<int> order)
     {
+        // Assign color index to each collectable item
         for (int i = 0; i < collectables.Count; i++)
         {
-            collectables[i].Item2.colorIndex = order[i];
+            collectables[i].Item2.ColorIndex = order[i];
         }
-    }
-
-    private void RandomlyAssignColors()
-    {
-        var options = new List<int>(Enumerable.Range(0, GameManager.Instance.availableColors.Count));
-        options.Shuffle();
-        AssignColors(options);
     }
 }

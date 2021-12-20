@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(ConstantForce))]
 public class PlayerMovement : MonoBehaviour
 {
+    #region Editor Fields
+
     [SerializeField] private float forwardSpeed = 30f;
 
     [Range(1, 100)]
@@ -15,8 +15,16 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private ConstantForce force;
 
+    #endregion
+
+    #region Data Members
+
     private float mouseXPosition;
     private bool isGameActive = false;
+
+    #endregion
+
+    #region Unity Methods
 
     private void Reset()
     {
@@ -28,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // If game is not active do nothing
         if (!isGameActive)
         {
             return;
@@ -54,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Event Handlers
+
     public void GameStarted()
     {
         // Set constent forward motion on player
@@ -69,6 +82,10 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
     }
 
+    #endregion
+
+    #region private Methods
+
     private float GetCurrentMouseX()
     {
         var currPosition = Input.mousePosition;
@@ -76,4 +93,6 @@ public class PlayerMovement : MonoBehaviour
             new Vector3(currPosition.x, currPosition.y, Camera.main.transform.position.z));
         return currentPoint.x;
     }
+
+    #endregion
 }

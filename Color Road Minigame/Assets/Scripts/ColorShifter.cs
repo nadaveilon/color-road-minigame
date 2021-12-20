@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColorShifter : MonoBehaviour
 {
     [SerializeField] private MeshRenderer meshRenderer;
+    
     private int colorIndex;
     
     private void Reset()

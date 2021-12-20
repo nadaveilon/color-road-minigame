@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -12,7 +8,11 @@ namespace Assets.Scripts.Utilities
     {
         private static Random random = new Random();
 
-        // Shuffle a generic list using the Fisher-Yates shuffle algorithm
+        /// <summary>
+        /// Shuffle a generic list using the Fisher-Yates shuffle algorithm 
+        /// </summary>
+        /// <typeparam name="T">The data type of the list's items</typeparam>
+        /// <param name="list">The list to shuffle</param>
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
@@ -26,6 +26,11 @@ namespace Assets.Scripts.Utilities
             }
         }
 
+        /// <summary>
+        /// Set only the X value of the position component of a transform
+        /// </summary>
+        /// <param name="transform">The transform to modify</param>
+        /// <param name="newX">The new X value</param>
         public static void SetPositionX(this Transform transform, float newX)
         {
             var pos = transform.position;
@@ -33,6 +38,11 @@ namespace Assets.Scripts.Utilities
             transform.position = pos;
         }
 
+        /// <summary>
+        /// Set only the Z value of the position component of a transform
+        /// </summary>
+        /// <param name="transform">The transform to modify</param>
+        /// <param name="newZ">The new Z value</param>
         public static void SetPositionZ(this Transform transform, float newZ)
         {
             var pos = transform.position;

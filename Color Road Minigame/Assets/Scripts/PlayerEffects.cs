@@ -1,17 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class PlayerCollision : MonoBehaviour
+public class PlayerEffects : MonoBehaviour
 {
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private ParticleSystemRenderer particleRenderer;
 
     private void Reset()
     {
+        // Initialize required components
         meshRenderer = GetComponent<MeshRenderer>();
         particleRenderer = GetComponent<ParticleSystem>().GetComponent<ParticleSystemRenderer>();
     }

@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c90e12214cba543bd43edaa0aaca55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable: {fileID: 7918273836025345534, guid: be9a81767a506d54bae74768f8610948, type: 3}
+  collectablePrefab: {fileID: 7918273836025345534, guid: be9a81767a506d54bae74768f8610948, type: 3}

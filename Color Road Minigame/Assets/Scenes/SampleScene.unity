@@ -515,7 +515,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startScreen: {fileID: 138009594}
-  endScreen: {fileID: 157945999}
 --- !u!95 &84869918
 Animator:
   serializedVersion: 3
@@ -773,6 +772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee25edc1d44be2348b25060de9fe59d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  availableColors:
+  - {r: 0.2666667, g: 0.8666667, b: 0.3411765, a: 1}
+  - {r: 0.9568627, g: 0.4666667, b: 0.4196078, a: 1}
+  - {r: 1, g: 0.8235294, b: 0.1960784, a: 1}
+  collectableValue: 1
   OnActiveColorChanged:
     m_PersistentCalls:
       m_Calls:
@@ -917,12 +921,6 @@ MonoBehaviour:
           m_StringArgument: Game Ended
           m_BoolArgument: 0
         m_CallState: 2
-  availableColors:
-  - {r: 0.2666667, g: 0.8666667, b: 0.3411765, a: 1}
-  - {r: 0.9568627, g: 0.4666667, b: 0.4196078, a: 1}
-  - {r: 1, g: 0.8235294, b: 0.1960784, a: 1}
-  roadLimitAbsolute: 2
-  collectableValue: 1
 --- !u!4 &363216597
 Transform:
   m_ObjectHideFlags: 0
